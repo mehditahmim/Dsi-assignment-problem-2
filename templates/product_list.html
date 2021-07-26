@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+{% load static %}
+{%block content%}
+<link rel="stylesheet" href="{% static 'product_list.css' %}">
+<div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+        <a class="navbar-brand logo-font" href="#">
+            Brand
+        </a>
+
+        <!-- links toggle -->
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#links" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <!-- account toggle -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#account" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        <div class="collapse navbar-collapse" id="links">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'shop:sortLowtoHigh' %}">Lower to higher price</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Higher to lower price</a>
+                </li>
+                
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+</div>
+
+<div class="container d-flex justify-content-center mt-45 mb-50">
+    <div class="row">
+        {% for p in products %}
+        <div class="col-md-4 mt-2">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-img-actions"> <img src="{{p.image_url}}" class="card-img img-fluid" width="56" height="250" alt=""> </div>
+                </div>
+                <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                        <h6 class="font-weight-semibold mb-2"> <a href="{{p.product_url}}" class="text-default mb-2" data-abc="true">{{p.name}}</a> </h6> <a href="#" class="text-muted" data-abc="true"></a>
+                    </div>
+                    <h3 class="mb-0 font-weight-semibold">{{p.price}}</h3>
+                    <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
+                    <div class="text-muted mb-3">34 reviews</div> <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        {%endfor%}
+    </div> 
+</div>    
+{%endblock%}
