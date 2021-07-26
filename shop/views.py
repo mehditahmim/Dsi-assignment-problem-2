@@ -13,3 +13,7 @@ def home(request):
 def sortLowtoHigh(request):
     products = Product.objects.all().order_by('price')
     return render(request, 'product_list.html', {'products':products})
+
+def sortHighToLow(request):
+    products = Product.objects.all().order_by('-price')
+    return render(request, 'product_list.html', {'products':products})
